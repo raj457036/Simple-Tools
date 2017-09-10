@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Untitled HTML</title>
+    <style>
+        body {font-family: arial;}
+        #reset {border:none;padding:10px;box-shadow:1px 1px 5px 1px gray;cursor:pointer;}
+        #reset:active {padding:9px;}
+      #down{
+        border:1px solid grey;
+        padding:5px;
+        text-decoration:none;
+        color:white;
+        background-color:dodgerblue;
+      }
+    </style>
+    <script
+  src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+  integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g="
+  crossorigin="anonymous"></script>
+  </head>
+  <body>
+      <h3>Customize Your Clock Below and Please give a Thumbs Up</h3>
+	<canvas id="canvas" width="400" height="400" style="border:1px solid grey" download>
+    </canvas><br>
+    <form >
+      <pre>
+      <fieldset style="width:300px">
+      	Customize Clock's
+        
+      	<select id="choice">
+        	<option value="border">Border</option>
+            <option value="frame">frame</option>
+        </select> <input type="text" placeholder="Enter your Name" id="name" value="Hello"> <a href=""  id="down">Download Clock</a>
+      </fieldset><div style="float:left"><div id="frame"><!--rgb(2,117,216)-->
+          Red   : 0<input id="color1" type='range' min="0" max="256" name="red" value="2">256
+          Green : 0<input id="color2" type='range' min="0" max="256" name="green" value="117">256
+          Blue  : 0<input id="color3" type='range' min="0" max="256" name="blue" value="216">256
+        </div><div id="border">
+          Red   : 0<input id="color4" type='range' min="0" max="256" name="red" value="56">256
+          Green : 0<input id="color5" type='range' min="0" max="256" name="green" value="53">256
+          Blue  : 0<input id="color6" type='range' min="0" max="256" name="blue" value="55">256
+        </div>
+                         <input id="reset" type="reset">
+      </div>
+      
+      </pre>
+    </form>
+    
+    
+    <script>
+      alert("Thank You for trying Clock");
+      alert("customize your clock from below the page Controls");
+      alert("and please give a thumbs Up and like");
+      function set_time(){
+          var select = [document.getElementById("border"),document.getElementById("frame"),document.getElementById("name").value]
+          var color1 = document.getElementById("color1").value;
+          var color2 = document.getElementById("color2").value;
+          var color3 = document.getElementById("color3").value;
+          var color4 = document.getElementById("color4").value;
+          var color5 = document.getElementById("color5").value;
+          var color6 = document.getElementById("color6").value;
+          var choice = document.getElementById("choice").value;
+        
+          var color = "rgb("+color1+","+ color2+","+color3+")";
+          var borderColor = "rgb("+color4+","+ color5+","+color6+")";
+          var can = document.getElementById("canvas");
+          var ctx = can.getContext("2d");
+          var radius = can.width/2;
+          var clockRadius = can.width/2-25;
+          var date = new Date();
+          var hours = date.getHours() % 12;
+          var min = date.getMinutes();
+          var sec = date.getSeconds();
+          var fullhour = hours + min/60 + sec/3600;
+          var hourAng = fullhour * Math.PI/6;
+          var minAng = min * Math.PI/30;
+          var secAng = sec * Math.PI/30;
+        
+          if(choice == "border"){
+            select[1].style.display = "none";
+            select[0].style.display= "block";
+          }else if(choice == "frame"){
+            select[0].style.display = "none";
+            select[1].style.display= "block";
+          }
+          ctx.beginPath()
+          ctx.arc(radius,radius,radius-10,0,Math.PI * 2);
+          ctx.fillStyle = borderColor;
+          ctx.fill()
+          ctx.beginPath()
+          ctx.arc(radius,radius,clockRadius,0,Math.PI * 2);
+          ctx.fillStyle = color;
+          ctx.fill()
+          ctx.beginPath()
+          ctx.arc(radius,radius,10,0,Math.PI * 2);
+          ctx.fillStyle = "white"
+          ctx.fill()
+          ctx.font = "20px Arial"
+          ctx.textAlign = "center";
+          ctx.baseLine = "middle"
+          ctx.fillStyle = "white"
+          for(i = 1;i <=12;i++){
+            ctx.fillText(i,radius + radius * Math.sin(i*(Math.PI/6)) * 0.79,radius - (radius * Math.cos(i*(Math.PI/6)) * 0.79))
+          }
+          for(i = 1;i <=60;i++){
+            if(i%5!=0)
+            	ctx.fillText(".",radius + radius * Math.sin(i*(Math.PI/30))* 0.78,radius - (radius * Math.cos(i*(Math.PI/30))*0.78 ))
+          }
+          ctx.strokeStyle = "white";
+          //hour hand
+          ctx.moveTo(radius,radius);
+          ctx.lineTo(radius + radius * Math.sin(hourAng)*0.5,radius - radius * Math.cos(hourAng)*0.5);
+          ctx.lineCap = "round"
+          ctx.lineWidth = 5;
+          ctx.stroke();
+           //min hand
+          ctx.moveTo(radius,radius);
+          ctx.lineTo(radius + radius * Math.sin(minAng)*0.7,radius - radius * Math.cos(minAng)*0.7);
+          ctx.lineCap = "round"
+          ctx.lineWidth = 3;
+          ctx.stroke();
+          // sec hand
+          ctx.moveTo(radius,radius);
+          ctx.lineTo(radius + radius * Math.sin(secAng)*0.87,radius - radius * Math.cos(secAng)*0.87);
+          ctx.lineWidth = 1;
+          ctx.stroke();
+        
+          ctx.fillText(hours+":"+min+":"+sec,200,100);
+          ctx.fillText(select[2],200,130);
+        }
+      setInterval(set_time,1000);
+      
+      	/**
+         * This is the function that will take care of image extracting and
+         * setting proper filename for the download.
+         * IMPORTANT: Call it from within a onclick event.
+        */
+        function downloadCanvas(link, canvasId, filename) {
+            link.href = document.getElementById(canvasId).toDataURL();
+            link.download = filename;
+        }
+        /** 
+         * The event handler for the link's onclick event. We give THIS as a
+         * parameter (=the link element), ID of the canvas and a filename.
+        */
+        document.getElementById('down').addEventListener('click', function() {
+            downloadCanvas(this, 'canvas', 'clock.png');
+        }, false);
+    </script>
+  </body>
+</html>
