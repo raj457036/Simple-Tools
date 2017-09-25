@@ -4,3 +4,4 @@
 
 <h3>Simple Calculator</h3> <a href="https://raj457036.github.io/Simple-Tools/calculator.html">Calculator</a>
 <h3>Simple Clock</h3> <a href="https://raj457036.github.io/Simple-Tools/Clock.html">Clock</a>
+<h3>Simple Infix to Postfix or Prefix convertor</h3> <a href="https://raj457036.github.io/Simple-Tools/infixToPreOrPost.html">Infix to Postfix or Prefix convertor</a>
