@@ -120,14 +120,14 @@
             {
                 items = infixToPostfix(document.getElementById("expression").value,1)['table'];
                 sel("itemname").innerHTML = "Postfix";
-                $("#ifpre").hide();
+                $("#ifpre").html("");
             }
             else
             {
                 items = infixToPrefix(document.getElementById("expression").value,1)['table'];
                 sel('itemname').innerHTML = "Prefix";
                 $("#ifpre").html("Reverse the resultant expression for prefix");
-                $("#ifpre").show();
+                
             }
 
 
