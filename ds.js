@@ -1,3 +1,11 @@
+/*
+This is a helper file containg all the logic use in postfix and prefix convertor and evaluator
+stacker class ::  is a stack maker
+checker :: is for checking the expression is postfix or prefix
+precedencer :: is for checking the precedence of the expression
+*/
+
+
 class stacker
 {
     constructor(size=100)
@@ -232,3 +240,80 @@ function infixToPrefix(expression, tab=0)
     expression = infixToPostfix(reverser(expression), tab);
     return {prefixExpression:reverser(expression['postfixExpression']), table:expression['table']};
 }
+
+function postfixEval(expression)
+{
+    expression += ' )';
+    expression = expression.split(" ");
+    var stak = new stacker(),table = {
+        char:[],s:[],
+    };
+
+    for(let i = 0; i < expression.length; i++)
+    {
+        let A, B;
+        if (precidencer(expression[i]) < 1)
+        {
+            stak.push(expression[i]);
+        }
+        else if(precidencer(expression[i]) >2)
+        {
+            A = stak.pop(), B = stak.pop();
+            stak.push(eval(B+expression[i]+A).toString());
+        }
+        table.char[i] = expression[i];
+        table.s[i]=stak.traverse().toString();
+    }
+    table.char.pop();
+    table.s.pop();
+    return table;
+}
+
+function prefixEval(expression)
+{
+    expression = expression.split(" ");
+    var prestack = new stacker(), table = {char:[], s:[],};
+
+    for(let i = expression.length-1; i > -1; i--)
+    {
+        let A, B;
+        if(precidencer(expression[i]) < 1)
+        {
+            prestack.push(expression[i]);
+        }
+        else if(precidencer(expression[i]) > 2)
+        {
+            A = prestack.pop(), B = prestack.pop();
+            prestack.push(eval(B+expression[i]+A).toString());
+        }
+
+        table.char[i] = expression[i];
+        table.s[i] = prestack.traverse().toString();
+    }
+    table.char = table.char.reverse();
+    table.s = table.s.reverse();
+    return table;
+}
+
+function checker(expression)
+{
+    if(precidencer(expression[0]) > 2)
+    {
+        return 1;
+    }
+    else
+    {
+        return 0;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
