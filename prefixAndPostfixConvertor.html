@@ -15,6 +15,7 @@
         <div class="jumbotron mt-3 text-center">
             <h1 class="lead" style="font-size:10vmin">Infix -> Postfix &amp Prefix</h1>
             <p class="lead">This is a simple infix to prefix or postfix Converter.</p>
+            
             <hr class="my-4">
             <p>Enter the Infix expression below in box and press Convert</p>
             <div>
@@ -22,16 +23,22 @@
                     <p>Type the Expression below</p>
                     <input type="text" class="form-control form-control-lg" name="expression" id="expression">
                     <br>
-                    <input type="radio"  name="fixer" checked id="fullpostfix" value="1"> Postfix Table 
-                    <input type="radio"  name="fixer" id="fullprefix" value="2"> Prefix Table
+                    <label for="fullpostfix">
+                        <input type="radio"  name="fixer" checked id="fullpostfix" value="1"> Postfix Table 
+                    </label>
+                    <label for="fullprefix">
+                        <input type="radio"  name="fixer" id="fullprefix" value="2"> Prefix Table
+                    </label>
                     <hr>
-                    <button class="btn btn-primary btn-lg" id="convert" role="button">Convert</button>
+                    <button class="btn btn-primary btn-lg" id="convert" role="button">Convert</button> <a class="btn btn-sm btn-warning" id="evaluate" href="./evaluator.html">Evaluate &gt</a>
                 </label>
             </div>
             
             <div id="shortresult">
                 <p class="lead">Postfix :  <span id="postfix" class="font-weight-bold"></span> |  Prefix :  <span id="prefix" class="font-weight-bold"></span></p>
-                <br><small>By Raj</small>
+                <div class="text-center">
+                    <small>By Raj</small>
+                </div>
             </div>
 
         </div>
@@ -93,10 +100,9 @@
                                         <li>Step 3: Reverse the postfix expression to get the prefix expression</li>
                                 </ul>
                             </small>
-                      
                     </div>
             </div>
-        
+
         </div>
     </div>
       
@@ -113,27 +119,25 @@
             document.getElementById("postfix").innerHTML = infixToPostfix(document.getElementById("expression").value)['postfixExpression'];
             document.getElementById("prefix").innerHTML = infixToPrefix(document.getElementById("expression").value)['prefixExpression'];
         }
-
+        //converter button and expression
         $("button#convert").click(function(){
             convert();
             var items, tab = "";
             $("#fullresult").show();
-            if($('input[name=fixer]:checked').val() == 1)
+
+            switch($('input[name=fixer]:checked').val())
             {
-                items = infixToPostfix(document.getElementById("expression").value,1)['table'];
-                sel("itemname").innerHTML = "Postfix";
-                $("#ifpre").html("");
-            }
-            else
-            {
-                items = infixToPrefix(document.getElementById("expression").value,1)['table'];
-                sel('itemname').innerHTML = "Prefix";
-                $("#ifpre").html("Reverse the resultant expression for prefix");
-                
+                case '1':
+                    items = infixToPostfix(document.getElementById("expression").value,1)['table'];
+                    sel("itemname").innerHTML = "Postfix";
+                    break;
+                case '2':
+                    items = infixToPrefix(document.getElementById("expression").value,1)['table'];
+                    sel('itemname').innerHTML = "Prefix";
+                    $("#ifpre").html("Reverse the resultant expression for prefix");
+                    break;
             }
 
-
-            
             for(var i = 0; i < items.exp.length; i++)
             {
                 tab += "<tr><td>" + i +"</td><td>"+items['exp'][i]+"</td><td>"+items['stak'][i]+"</td><td>"+items['conexp'][i]+"</td></tr>";
@@ -141,6 +145,10 @@
 
             sel("tabledata").innerHTML = tab;
         })
+
+        //evaluator button and expression
+
+        
     </script>
 </body>
 </html>
