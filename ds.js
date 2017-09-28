@@ -284,7 +284,7 @@ function prefixEval(expression)
         else if(precidencer(expression[i]) > 2)
         {
             A = prestack.pop(), B = prestack.pop();
-            prestack.push(eval(B+expression[i]+A).toString());
+            prestack.push(eval(A+expression[i]+B).toString());
         }
 
         table.char[i] = expression[i];
