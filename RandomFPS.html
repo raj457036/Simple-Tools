@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Random Fun</title>
+</head>
+
+<body>
+  <style>
+    #shape,
+    #shape2 {
+      height: 80vh;
+      width: 90vw;
+      display: inline-block;
+      margin: 10px;
+    }
+
+    button {
+      padding: 2px 5px;
+      border: 1px solid rgb(121, 121, 121);
+      box-shadow: 1px 1px 10px rgb(201, 201, 201);
+      margin: 2px;
+      border-radius: 3px;
+    }
+    button:hover, button:active {
+        background-color: #ff1744;
+        color:white;
+    }
+    .flex {
+        display: flex;
+        direction: row;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+  </style>
+  <h3 align="center" style="font-family:sans-serif; font-weight:100; padding:0; margin:10px 0">EveryThing Random</h3>
+  <h4 align="center" style="font-family:sans-serif; font-weight:100; padding:0; margin:10px 0">FPS <span id="fps"></span></h4>
+  <div class="flex">
+    <button onclick="changeSpeed(1, 1000)">1000 fps</button>
+    <button onclick="changeSpeed(2, 500)">500 fps</button>
+    <button onclick="changeSpeed(4, 250)">250 fps</button>
+    <button onclick="changeSpeed(8, 120)">120 fps</button>
+    <button onclick="changeSpeed(16, 60)">60 fps</button>
+    <button onclick="changeSpeed(33, 30)">30 fps</button>
+    <button onclick="changeSpeed(67, 15)">15 fps</button>
+    <button onclick="changeSpeed(133, 7)">7 fps</button>
+    <button onclick="changeSpeed(267, 4)">4 fps</button>
+    <button onclick="changeSpeed(533, 2)">2 fps</button>
+    <button onclick="changeSpeed(1000, 1)">1 fps</button>
+  </div>
+  <div id="shape2"></div>
+  <script>
+    var speed = 8;
+    var ele2 = document.getElementById('shape2');
+    var fpsC = document.getElementById('fps');
+    var vals = [
+      [0, 0],
+      [0, 0],
+      [0, 0],
+      [0, 0],
+      [0, 0],
+      [0, 0],
+      [0, 0],
+      [0, 0],
+      [0, 0],
+      [0, 0]
+    ];
+    var fps = 120;
+    fpsC.innerText = `~${fps}`;
+    var interval = setInterval(() => {
+
+      let num = Math.round(Math.random() * 9);
+      let temp = Math.round(Math.random());
+      if (vals[num][temp] <= 100) {
+        vals[num][temp]++;
+      } else {
+        vals[num][temp] = 0;
+      }
+      ele2.style.clipPath =
+        `polygon(${vals[0][0]}% ${vals[0][1]}%, ${vals[1][0]}% ${vals[1][1]}%, ${vals[2][0]}% ${vals[2][1]}%, ${vals[3][0]}% ${vals[3][1]}%, ${vals[4][0]}% ${vals[4][1]}%, ${vals[5][0]}% ${vals[5][1]}%, ${vals[6][0]}% ${vals[6][1]}%, ${vals[7][0]}% ${vals[7][1]}%, ${vals[8][0]}% ${vals[8][1]}%, ${vals[9][0]}% ${vals[9][1]}%)`;
+    }, speed);
+
+    setInterval(() => {
+      ele2.style.backgroundColor =
+        `rgb(${Math.round(Math.random() * 255)}, ${Math.round(Math.random() * 255)}, ${Math.round(Math.random() * 255)})`
+    }, 1000)
+
+    var changeSpeed = (s, f) => {
+      fpsC.innerText = fps = `~${f}`;
+      clearInterval(interval);
+      speed = s;
+      interval = setInterval(() => {
+        let num = Math.round(Math.random() * 9);
+        let temp = Math.round(Math.random());
+        if (vals[num][temp] <= 100) {
+          vals[num][temp]++;
+        } else {
+          vals[num][temp] = 0;
+        }
+        ele2.style.clipPath =
+          `polygon(${vals[0][0]}% ${vals[0][1]}%, ${vals[1][0]}% ${vals[1][1]}%, ${vals[2][0]}% ${vals[2][1]}%, ${vals[3][0]}% ${vals[3][1]}%, ${vals[4][0]}% ${vals[4][1]}%, ${vals[5][0]}% ${vals[5][1]}%, ${vals[6][0]}% ${vals[6][1]}%, ${vals[7][0]}% ${vals[7][1]}%, ${vals[8][0]}% ${vals[8][1]}%, ${vals[9][0]}% ${vals[9][1]}%)`;
+      }, speed);
+    };
+
+  </script>
+</body>
+
+</html>
