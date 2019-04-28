@@ -130,7 +130,7 @@ function precidencer(item)
     precedence are :
             * > ^ > / > % > + > - > ) > ( > any operand
     */
-    var operators = ['','(',')','-','+','%','/','^','*'];
+    var operators = ['','(',')','-','+','%','/','*','^'];
 
     for(var j = 0; j < operators.length; j++)
         {
@@ -306,14 +306,3 @@ function checker(expression)
         return 0;
     }
 }
-
-
-
-
-
-
-
-
-
-
-
