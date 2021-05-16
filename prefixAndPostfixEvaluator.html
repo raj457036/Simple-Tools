@@ -1,62 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Data Structure : Infix Postfix Prefix - Converter &amp Evaluator</title>
     <script src="ds.js"></script>
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
-  </head>
-  <body>
-     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <a class="navbar-brand" href="https://raj457036.github.io/Simple-Tools/">Simple Tools</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          tools
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item" href="https://raj457036.github.io/Simple-Tools/calculator.html">Calculator</a>
-            <a class="dropdown-item" href="https://raj457036.github.io/Simple-Tools/prefixAndPostfixConvertor.html">Infix-&gt postfix/Prefix</a>
-            <a class="dropdown-item" href="https://raj457036.github.io/Simple-Tools/prefixAndPostfixEvaluator.html">Postfix/Prefix-&gt Evaluate</a>
-            <a class="dropdown-item" href="https://raj457036.github.io/Simple-Tools/Clock.html">Beautiful Clock</a>
-          </div>
-          <a class="nav-item nav-link" href="#" onclick='alert("Hey, Hi I am raj. A cs student and a future cyber security expert. I love to code, hack and cook food. and yes i am foodi too:)")'>About me</a>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
+        integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="index.html">Simple Tools</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    tools
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="calculator.html">Calculator</a>
+                    <a class="dropdown-item" href="prefixAndPostfixConvertor.html">Infix-&gt
+                        postfix/Prefix</a>
+                    <a class="dropdown-item" href="prefixAndPostfixEvaluator.html">Postfix/Prefix-&gt
+                        Evaluate</a>
+                    <a class="dropdown-item" href="Clock.html">Beautiful Clock</a>
+                    <a class="dropdown-item" href="RandomFPS.html">FPS Simulator</a>
+                </div>
+                <a class="nav-item nav-link" href="#" onclick='alert("Thanks for using this tool.")'>About</a>
+
+            </div>
         </div>
-      </div>
     </nav>
     <div class="container">
         <div class="jumbotron mt-3 text-center">
+            <h4><span class="badge badge-pill badge-primary"> Updated</span></h4>
+
             <h1 class="lead" style="font-size:10vmin">Postfix &amp Prefix Evaluator</h1>
             <p class="lead">This is a simple Prefix or Postfix Evaluator.</p>
-            
+
             <hr class="my-4">
             <p>Enter the Postfix or Prefix expression below in box and press Evaluate
-            <br><small>Note: Enter the number and operators seperated with space " "</small>
+                <br><small>Note: Enter the number and operators seperated with space " "</small>
             </p>
             <div>
                 <label for="expression">
-                    <p>Type the Expression below <br><small>prefix : + - 2 7 * 8 / 4 12<br>postfix: 4 55 + 62 23 - * <br> (seperated with space)</small></p>
+                    <p>Type the Expression below <br><small>prefix : + - 2 7 * 8 / 4 12<br>postfix: 4 55 + 62 23 - *
+                            <br> (seperated with space)</small></p>
                     <input type="text" class="form-control form-control-lg" name="expression" id="expression">
                     <br>
                     <label for="posteval">
-                    <input type="radio"  name="fixer" checked id="posteval" value="1"> Postfix Evaluate
+                        <input type="radio" name="fixer" checked id="posteval" value="1"> Postfix Evaluate
                     </label>
                     <label for="preeval">
-                        <input type="radio"  name="fixer" id="preeval" value="2"> Prefix Evaluate
+                        <input type="radio" name="fixer" id="preeval" value="2"> Prefix Evaluate
                     </label>
-                        <hr>
-                    <a class="btn btn-primary btn-sm" id="convert" role="button" href="./prefixAndPostfixConvertor.html">&lt Convert</a> <button class="btn btn-lg btn-warning" id="evaluate" >Evaluate</button>
+                    <hr>
+                    <a class="btn btn-primary btn-sm" id="convert" role="button"
+                        href="./prefixAndPostfixConvertor.html">&lt Convert</a> <button class="btn btn-lg btn-warning"
+                        id="evaluate">Evaluate</button>
                 </label>
             </div>
-            
+
             <div id="shortresult">
-                <p class="lead">Evaluated :  <span id="eval" class="font-weight-bold"></span>
+                <p class="lead">Evaluated : <span id="eval" class="font-weight-bold"></span>
                 <div class="text-center">
                     <small>By Raj</small>
                 </div>
@@ -66,115 +80,127 @@
 
         <div id="fullresult">
             <div class="row">
-                    <div class="col-md-8">
-                            <table class="table table-striped table-bordered">
-                                    <thead class="thead-inverse text-left">
-                                        <tr>
-                                            <th>Sr. no.</th>
-                                            <th>Expression</th>
-                                            <th>Stack</th>
-                                        </tr>
-                                    </thead>
-            
-                                    <tbody id="tabledata" class="text-left">
-                                        
-                                       
-                                    </tbody>
-                                    <br>
-                                    <span id="ifpre" class="lead"></span>
-                            </table>
-                    </div>
-    
-                    <div class="col-md-4 text-center">
-                            <h2>
-                                Algorithm used
-                            </h2>
-                            <!--for postfix-->
-                      <div class="text-left">
+                <div class="col-md-8">
+                    <table class="table table-striped table-bordered">
+                        <thead class="thead-inverse text-left">
+                            <tr>
+                                <th>Sr. no.</th>
+                                <th>Expression</th>
+                                <th>Stack</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="tabledata" class="text-left">
+
+
+                        </tbody>
+                        <br>
+                        <span id="ifpre" class="lead"></span>
+                    </table>
+                </div>
+
+                <div class="col-md-4 text-center">
+                    <h2>
+                        Algorithm used
+                    </h2>
+                    <!--for postfix-->
+                    <div class="text-left">
                         <p class="lead">Postfix Evaluation</p>
-                          <small><ul>
-                            <li>Step 1: Add a ")" at the end of the postfix expression</li>
-                            <li>Step 2: Scan every character of the postfix expression and repeat Step 3 and 4 until ")" is encountered.</li>
-                            <li>Step 3: IF an operand is encountered, Push it on the stack<br />
-                                IF an operator O is encountered, then
-                                <ul>
-                                    <li>a: Pop the top two elements from the stack as A and B</li>
-                                    <li>b: Evaluate B O A, where A is the topmost element and B is the element below A.</li>
-                                    <li>c: Push the result of evaluation on the stack<br/>[END OF IF]</li>
-                                </ul>
-                            </li>
-                            <li>Step 4: Set result = stack's top elements</li>
-                            <li>Step 5: Exit</li>
-                           </ul></small><hr>
+                        <small>
+                            <ul>
+                                <li>Step 1: Add a ")" at the end of the postfix expression</li>
+                                <li>Step 2: Scan every character of the postfix expression and repeat Step 3 and 4 until
+                                    ")" is encountered.</li>
+                                <li>Step 3: IF an operand is encountered, Push it on the stack<br />
+                                    IF an operator O is encountered, then
+                                    <ul>
+                                        <li>a: Pop the top two elements from the stack as A and B</li>
+                                        <li>b: Evaluate B O A, where A is the topmost element and B is the element below
+                                            A.</li>
+                                        <li>c: Push the result of evaluation on the stack<br />[END OF IF]</li>
+                                    </ul>
+                                </li>
+                                <li>Step 4: Set result = stack's top elements</li>
+                                <li>Step 5: Exit</li>
+                            </ul>
+                        </small>
+                        <hr>
                         <p class="lead">Prefix Evaluation</p>
-                          <small><ul>
-                          <li>Step 1: Get Prefix expression as it is</li>
-                          <li>Step 2: Repeat untill all the characters in prefix<br /> expression have been scanned</li>
-                              <ul>
-                                  <li>a: Read the prefix expression from right to left one at a time</li>
-                                  <li>b: If the readed character is an operand, push it on the stack</li>
-                                  <li>c: If the readed character is an operator, then
-                                      <ul>
-                                          <li>i: pop two values from the stack.</li>
-                                          <li>ii: Apply the operation on the operands.</li>
-                                          <li>iii: Push the result onto the stack.</li>
-                                      </ul>
-                                  </li>
-                              </ul>
-                          </li>
-                          <li>Step 3: Exit</li>
-                            </ul></small>
-                      </div>
+                        <small>
+                            <ul>
+                                <li>Step 1: Get Prefix expression as it is</li>
+                                <li>Step 2: Repeat untill all the characters in prefix<br /> expression have been
+                                    scanned</li>
+                                <ul>
+                                    <li>a: Read the prefix expression from right to left one at a time</li>
+                                    <li>b: If the readed character is an operand, push it on the stack</li>
+                                    <li>c: If the readed character is an operator, then
+                                        <ul>
+                                            <li>i: pop two values from the stack.</li>
+                                            <li>ii: Apply the operation on the operands.</li>
+                                            <li>iii: Push the result onto the stack.</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                </li>
+                                <li>Step 3: Exit</li>
+                            </ul>
+                        </small>
                     </div>
+                </div>
             </div>
 
         </div>
     </div>
-      
+
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
+        integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"
+        integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
+        crossorigin="anonymous"></script>
     <script>
-        function sel(x){return document.getElementById(x)}
+        function sel(x) { return document.getElementById(x) }
         $("#fullresult").hide();
 
         //evaluate button and expression
-        $("button#evaluate").click(function(){
+        $("button#evaluate").click(function () {
             var items, tab = "";
             $("#fullresult").show();
 
-            switch($('input[name=fixer]:checked').val())
-            {
+            switch ($('input[name=fixer]:checked').val()) {
                 case '1':
-                    if(checker(document.getElementById("expression").value) == 0){
+                    if (checker(document.getElementById("expression").value) == 0) {
                         table = postfixEval(document.getElementById("expression").value);
                     }
-                    else{
-                        alert("I think this is a prefix expression please select prefix evaluate.");
+                    else {
+                        alert("Humm! looks like this is a prefix expression please select prefix evaluate.");
                     }
                     break;
                 case '2':
-                    if(checker(document.getElementById("expression").value)==1)
-                    {
+                    if (checker(document.getElementById("expression").value) == 1) {
                         table = prefixEval(document.getElementById("expression").value);
                     }
-                    else{
-                        alert("I think this is a postfix expression please select postfix evaluate.");
+                    else {
+                        alert("Humm! looks like this is a postfix expression please select postfix evaluate.");
                     }
                     break;
             }
-            $("span#eval").html(table.s[table.s.length-1]);
-            for(var i = 0; i < table.char.length; i++)
-            {
-                tab += "<tr><td>" + i +"</td><td>"+table.char[i]+"</td><td>"+table.s[i]+"</td></tr>";
+            $("span#eval").html(table.s[table.s.length - 1]);
+            for (var i = 0; i < table.char.length; i++) {
+                tab += "<tr><td>" + i + "</td><td>" + table.char[i] + "</td><td>" + table.s[i] + "</td></tr>";
             }
 
             sel("tabledata").innerHTML = tab;
         })
 
-        
+
     </script>
 </body>
+
 </html>
