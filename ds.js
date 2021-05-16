@@ -6,116 +6,86 @@ precedencer :: is for checking the precedence of the expression
 */
 
 
-class stacker
-{
-    constructor(size=100)
-    {
+class stacker {
+    constructor(size = 100) {
         this.size = size;
         this.items = [];
         this.top = -1; // we can also is -> this.items.length
     }
 
-// Getters for stack below
+    // Getters for stack below
 
-    get lastIndex()
-    {
+    get lastIndex() {
         // this return the index of last item
         return this.top;
     }
 
-    get stackLen()
-    {
+    get stackLen() {
         return this.items.length;
     }
 
-    get leftSize()
-    {
-        return this.size-this.stackLen;
+    get leftSize() {
+        return this.size - this.stackLen;
     }
 
-    get peek()
-    {
-        if(this.isEmpty() == true)
-            {
-                return console.log("stack is empty");
-            }
-        else
-            {
-                return console.log(this.items[this.top]), this.items[this.top];
-            }
+    get peek() {
+        if (this.isEmpty() == true) {
+            return null;
+        } else {
+            return this.items[this.top];
+        }
     }
 
-// Setters for stack below
-    getItem(index)
-    {
-        if(index > this.top || index < 0)
-            {
-                return console.log("Wrong Index")
-            }
-        else
-            {
-                return this.items[index], console.log(this.items[index]);
-            }
+    // Setters for stack below
+    getItem(index) {
+        if (index > this.top || index < 0) {
+            return null;
+        } else {
+            return this.items[index];
+        }
     }
-    isFull()
-    {
-        if(this.top==this.size-1)
-            {
-                return true;
-            }
-        else
-        {
+    isFull() {
+        if (this.top == this.size - 1) {
+            return true;
+        } else {
             return false;
         }
     }
 
-    isEmpty()
-    {
-        if(this.top < 0)
-            {
-                return true;
-            }
-        else
-            {
-                return false;
-            }
+    isEmpty() {
+        if (this.top < 0) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
-    push(element)
-    {
-        if(this.isFull() == true)
-            {
-                return console.log("Stack is Full Now");
-            }
-        else
-            {
-                this.top++;
-                this.items[this.top] = element;
-                return true;
-            }
-        
+    push(element) {
+        if (this.isFull() == true) {
+            return console.log("Stack is Full Now");
+        } else {
+            this.top++;
+            this.items[this.top] = element;
+            return true;
+        }
+
     }
 
-    pop()
-    {
+    pop() {
         var data;
-        if(this.isEmpty() == true)
-            {
-                return false;
-            }
-        else
-            {
-                // data = this.items[this.top];
-                // this.items[this.top] = undefined;
-                // or we can use 
-                data = this.items.splice(this.top, 1); // this will return an array with single element more efficient
-                this.top--;
-                return data[0];
-            }
+        if (this.isEmpty() == true) {
+            return false;
+        } else {
+            // data = this.items[this.top];
+            // this.items[this.top] = undefined;
+            // or we can use 
+            data = this.items.splice(this.top, 1); // this will return an array with single element more efficient
+            this.top--;
+            return data[0];
+        }
     }
 
-    traverse()
-    {
+    traverse() {
         return this.items;
     }
 
@@ -124,185 +94,242 @@ class stacker
 
 // INFIX TO POSTFIX
 
-function precidencer(item)
-{
+const preference = {
+    "-": 0,
+    "+": 0,
+    "/": 1,
+    "*": 1,
+    "^": 2,
+    ")": 3,
+    "(": 3,
+};
+
+function precidencer(item) {
     /*
     precedence are :
             * > ^ > / > % > + > - > ) > ( > any operand
     */
-    var operators = ['','(',')','-','+','%','/','*','^'];
+    var operators = ['', '(', ')', '-', '+', '%', '/', '*', '^'];
 
-    for(var j = 0; j < operators.length; j++)
-        {
-            if(item == operators[j])
-                {
-                    return j;
-                }
+    for (var j = 0; j < operators.length; j++) {
+        if (item == operators[j]) {
+            return j;
         }
-    
-        return 0;
+    }
+
+    return 0;
+}
+
+const isAnOperator = (s) => preference[s] !== undefined;
+const isAParen = (s) => preference[s] === 3;
+
+function infixToPostfixV2(expression, tab = 0) {
+    console.log(expression);
+
 }
 
 // Infix to postfix conversion
-function infixToPostfix(expression, tab = 0)
-{
-    var postfixExpression = "", current;
+function infixToPostfix(expression, tab = 0) {
+
+    const infixExp = [...expression.split(""), ")"];
+    const postfixExp = [];
+
+    const stack = ["("];
+
     var table = {
         exp: [],
         stak: [],
         conexp: [],
     };
-    // step 1: put a ')' at the end of expression
-    expression += ')';
 
-    // creating a stack
-    var infixStack = new stacker();
+    table.exp.push("");
+    table.stak.push(stack.join(" "));
+    table.conexp.push(postfixExp.join(""));
 
-    // step 2: push '(' to stack
-    infixStack.push('(');
+    for (var char of infixExp) {
 
-    // traversing whole expression now
-    for(var i = 0; i < expression.length; i++ )
-        {
-            current = expression[i];
-            if(precidencer(current) == 1)
-                {
-                    infixStack.push('(');
-                }
+        if (char === "(") {
+            stack.push(char);
+            continue;
+        } else if (!isAnOperator(char)) {
+            postfixExp.push(char);
+        } else if (char === ")") {
+            while (stack.length > 0 && stack[stack.length - 1] !== "(") {
+                const last = stack.pop();
+                postfixExp.push(last);
+            }
+            stack.pop();
+        } else if (isAnOperator(char)) {
+            while (stack.length > 0 &&
+                preference[stack[stack.length - 1]] >= preference[char] &&
+                !isAParen(stack[stack.length - 1])) {
+                postfixExp.push(stack.pop());
+            }
 
-            else if(precidencer(current) == 0) 
-                {
-                    postfixExpression += current;
-                }
-
-            else if(precidencer(current) == 2)
-                {
-                    while(infixStack.peek != '(')
-                        {
-                            postfixExpression += infixStack.pop();
-                        }
-                    if(infixStack.peek == '(')
-                        {
-                            infixStack.pop();
-                        }
-                }
-            else if(precidencer(current) > 2)
-                {
-                    if(precidencer(current) >= precidencer(infixStack.peek))
-                        {
-                            infixStack.push(current);
-                            
-                        }
-                    else
-                        {
-                            while(infixStack.peek != '(')
-                                {
-                                    postfixExpression += infixStack.pop();
-                                }
-                            infixStack.push(current);
-                            
-                        }
-                }
-            
-            if(tab==1)
-                {
-                    table.exp[i] = current;
-                    table.stak[i] = infixStack.traverse().join("");
-                    table.conexp[i] = postfixExpression;
-                }
+            stack.push(char);
         }
-    
-        return {postfixExpression:postfixExpression, table: table};
+
+        if (tab == 1) {
+            table.exp.push(char);
+            table.stak.push(stack.join(" "));
+            table.conexp.push(postfixExp.join(""));
+        }
+
+    }
+
+    while (stack.length > 0) {
+        postfixExp.push(stack.pop());
+    }
+
+    return {
+        postfixExpression: postfixExp.join(""),
+        table: table
+    };
 }
 
 // reverser
 
-function reverser(expression)
-{
-    var newExpression = expression.split("");
-    
-    for(var i = 0; i < expression.length; i++)
-    {
-        if(newExpression[i] == ')')
-            {
-                newExpression[i] = '(';
-            }
-        else if(newExpression[i] == '(')
-            {
-                newExpression[i] = ')';
-            }
+function reverser(expression) {
+    var _temp = expression.split("");
+
+    for (var i = 0; i < expression.length; i++) {
+        if (_temp[i] === ')') {
+            _temp[i] = '(';
+        } else if (_temp[i] === '(') {
+            _temp[i] = ')';
+        }
     }
 
-    return newExpression.reverse().join("");
-}
-function infixToPrefix(expression, tab=0)
-{
-    expression = infixToPostfix(reverser(expression), tab);
-    return {prefixExpression:reverser(expression['postfixExpression']), table:expression['table']};
+    return _temp.reverse().join("");
 }
 
-function postfixEval(expression)
-{
-    expression += ' )';
-    expression = expression.split(" ");
-    var stak = new stacker(),table = {
-        char:[],s:[],
+function infixToPrefix(expression, tab = 0) {
+    expression = infixToPostfix(reverser(expression), tab);
+    return {
+        prefixExpression: reverser(expression['postfixExpression']),
+        table: expression['table']
+    };
+}
+
+function isNumbers(expression) {
+
+    let isNumber = true;
+
+    const splited = expression.split(" ");
+
+    for (const char of splited) {
+        if ("+-/*()^".includes(char)) continue;
+
+        const num = parseInt(char);
+        if (num.toString() === "NaN") {
+            isNumber = false;
+            break;
+        }
+    }
+
+    return isNumber;
+}
+
+
+function postfixEval(expression) {
+
+    expression = expression.trim();
+
+    const postfixExp = [...expression.split(" "), ")"];
+
+    const isNumber = isNumbers(expression);
+
+    const table = {
+        char: [],
+        s: [],
     };
 
-    for(let i = 0; i < expression.length; i++)
-    {
-        let A, B;
-        if (precidencer(expression[i]) < 1)
-        {
-            stak.push(expression[i]);
+    console.log(isNumber);
+
+    const stack = [];
+    let finalResult = 0;
+    for (const char of postfixExp) {
+
+        if (char === ")") break;
+
+        if (!isAnOperator(char)) {
+            stack.push(char);
+        } else {
+            const a = stack.pop();
+            const b = stack.pop();
+
+            let result = `(${b}${char}${a})`;
+
+
+            stack.push(result);
         }
-        else if(precidencer(expression[i]) >2)
-        {
-            A = stak.pop(), B = stak.pop();
-            stak.push(eval(B+expression[i]+A).toString());
-        }
-        table.char[i] = expression[i];
-        table.s[i]=stak.traverse().toString();
+
+        finalResult = stack[stack.length - 1];
+
+        table.char.push(char);
+        table.s.push(stack.join(" "))
     }
-    table.char.pop();
-    table.s.pop();
+
+    let _tresult = `${finalResult}`;
+
+    if (isNumber) {
+        _tresult += ` = ${eval(finalResult)}`;
+    }
+
+    table.s[table.s.length - 1] = _tresult;
+
     return table;
 }
 
-function prefixEval(expression)
-{
-    expression = expression.split(" ");
-    var prestack = new stacker(), table = {char:[], s:[],};
+function prefixEval(expression) {
 
-    for(let i = expression.length-1; i > -1; i--)
-    {
-        let A, B;
-        if(precidencer(expression[i]) < 1)
-        {
-            prestack.push(expression[i]);
-        }
-        else if(precidencer(expression[i]) > 2)
-        {
-            A = prestack.pop(), B = prestack.pop();
-            prestack.push(eval(A+expression[i]+B).toString());
+    expression = expression.trim();
+
+    const prefixExp = expression.split(" ");
+
+    const stack = [];
+
+    const table = {
+        char: [],
+        s: [],
+    };
+
+    for (const char of prefixExp.reverse()) {
+        if (!isAnOperator(char)) {
+            stack.push(char);
+        } else {
+            const a = stack.pop();
+            const b = stack.pop();
+
+            const result = `(${a}${char}${b})`;
+
+            stack.push(result);
         }
 
-        table.char[i] = expression[i];
-        table.s[i] = prestack.traverse().toString();
+        table.char.push(char);
+        table.s.push(stack.join(" "));
     }
-    table.char = table.char.reverse();
-    table.s = table.s.reverse();
+
+    // table.char = table.char.reverse();
+    // table.s = table.s.reverse();
+
+    const finalResult = table.s[table.s.length - 1];
+
+    let _tresult = `${finalResult}`;
+
+    if (isNumber) {
+        _tresult += ` = ${eval(finalResult)}`;
+    }
+
+    table.s[table.s.length - 1] = _tresult;
+
     return table;
 }
 
-function checker(expression)
-{
-    if(precidencer(expression[0]) > 2)
-    {
+function checker(expression) {
+    if (precidencer(expression[0]) > 2) {
         return 1;
-    }
-    else
-    {
+    } else {
         return 0;
     }
 }
