@@ -106,21 +106,21 @@
                     <small id="algo">
                         <p class="lead">Postfix</p>
                         <ul class="text-left" id="postfixAlgo">
-                            <li>Step 1: Add '')" to the end of the infix expression</li>
-                            <li>Step 2: Push(o nto the stack </li>
+                            <li>Step 1: Add ")" to the end of the infix expression</li>
+                            <li>Step 2: Push "(" into the stack </li>
                             <li>Step 3: Repeat until each character in the infix notation is scanned
                                 <ul>
-                                    <li> IF a(is encountered, push it on the stack </li>
-                                    <li>IF an operand (whetheradigit oracharacter) is encountered, add it postfix
+                                    <li> IF a "(" is encountered, push it on the stack </li>
+                                    <li>IF an operand (whether a digit or a character) is encountered, add it postfix
                                         expression. </li>
                                     <li>IF a ")" is encountered, then <br>
                                         a. Repeatedly pop from stack and add it to the postfix expression until a "(" is
                                         encountered. <br>
-                                        b. Discard the "(".That is, remove the(from stack and do not add it to the
+                                        b. Discard the "(". That is, remove the "(" from stack and do not add it to the
                                         postfix expression
                                     </li>
                                     <li>IF an operator O is encountered, then <br>
-                                        a. Repeatedly pop from stack and add each operator ( popped from the stack) to
+                                        a. Repeatedly pop from stack and add each operator (popped from the stack) to
                                         the postfix expression which has the same precedence orahigher precedence than O
                                         <br>b. Push the operator to the stack
                                     </li>
