@@ -236,8 +236,6 @@ function postfixEval(expression) {
     s: [],
   };
 
-  console.log(isNumber);
-
   const stack = [];
   let finalResult = 0;
   for (const char of postfixExp) {
@@ -306,7 +304,7 @@ function prefixEval(expression) {
   const finalResult = table.s[table.s.length - 1];
 
   let _tresult = `${finalResult}`;
-
+  console.log(finalResult);
   if (isNumber) {
     _tresult += ` = ${eval(finalResult)}`;
   }
