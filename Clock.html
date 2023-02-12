@@ -1,68 +1,68 @@
 <!doctype html>
 <html lang="en">
 
-<head>
-  <meta charset="utf-8">
-  <title>Untitled HTML</title>
-  <style>
-    body {
-      font-family: arial;
-    }
+  <head>
+    <meta charset="utf-8">
+    <title>Untitled HTML</title>
+    <style>
+      body {
+        font-family: arial;
+      }
 
-    #reset {
-      border: none;
-      padding: 10px;
-      box-shadow: 1px 1px 5px 1px gray;
-      cursor: pointer;
-    }
+      #reset {
+        border: none;
+        padding: 10px;
+        box-shadow: 1px 1px 5px 1px gray;
+        cursor: pointer;
+      }
 
-    #reset:active {
-      padding: 9px;
-    }
+      #reset:active {
+        padding: 9px;
+      }
 
-    #down {
-      border: 1px solid grey;
-      padding: 5px;
-      text-decoration: none;
-      color: white;
-      background-color: dodgerblue;
-    }
-  </style>
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-    integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g=" crossorigin="anonymous"></script>
-</head>
+      #down {
+        border: 1px solid grey;
+        padding: 5px;
+        text-decoration: none;
+        color: white;
+        background-color: dodgerblue;
+      }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g=" crossorigin="anonymous"></script>
+  </head>
 
-<body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="index.html">Simple Tools</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
-      aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
-          aria-haspopup="true" aria-expanded="false">
-          tools
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="calculator.html">Calculator</a>
-          <a class="dropdown-item" href="prefixAndPostfixConvertor.html">Infix-&gt
-            postfix/Prefix</a>
-          <a class="dropdown-item" href="prefixAndPostfixEvaluator.html">Postfix/Prefix-&gt
-            Evaluate</a>
-          <a class="dropdown-item" href="Clock.html">Beautiful Clock</a>
-          <a class="dropdown-item" href="RandomFPS.html">FPS Simulator</a>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="index.html">Simple Tools</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+        aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            tools
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item" href="calculator.html">Calculator</a>
+            <a class="dropdown-item" href="prefixAndPostfixConvertor.html">Infix-&gt
+              postfix/Prefix</a>
+            <a class="dropdown-item" href="prefixAndPostfixEvaluator.html">Postfix/Prefix-&gt
+              Evaluate</a>
+            <a class="dropdown-item" href="Clock.html">Beautiful Clock</a>
+            <a class="dropdown-item" href="RandomFPS.html">FPS Simulator</a>
+          </div>
+          <a class="nav-item nav-link" href="#" onclick='alert("Thanks for using this tool.")'>About</a>
         </div>
-        <a class="nav-item nav-link" href="#" onclick='alert("Thanks for using this tool.")'>About</a>
       </div>
-    </div>
-  </nav>
-  <h3>Customize Your Clock Below and Please give a Thumbs Up</h3>
-  <canvas id="canvas" width="400" height="400" style="border:1px solid grey" download>
-  </canvas><br>
-  <form>
-    <pre>
+    </nav>
+    <h3>Customize Your Clock Below and Please give a Thumbs Up</h3>
+    <canvas id="canvas" width="400" height="400" style="border:1px solid grey" download>
+    </canvas><br>
+    <form>
+      <pre>
       <fieldset style="width:300px">
       	Customize Clock's
         
@@ -83,109 +83,117 @@
       </div>
       
       </pre>
-  </form>
+    </form>
 
 
-  <script>
-    alert("Thank You for trying Clock");
-    alert("customize your clock from below the page Controls");
-    alert("and please give a thumbs Up and like");
-    function set_time() {
-      var select = [document.getElementById("border"), document.getElementById("frame"), document.getElementById("name").value]
-      var color1 = document.getElementById("color1").value;
-      var color2 = document.getElementById("color2").value;
-      var color3 = document.getElementById("color3").value;
-      var color4 = document.getElementById("color4").value;
-      var color5 = document.getElementById("color5").value;
-      var color6 = document.getElementById("color6").value;
-      var choice = document.getElementById("choice").value;
+    <script>
+      alert("Thank You for trying Clock");
+      alert("customize your clock from below the page Controls");
+      alert("and please give a thumbs Up and like");
+      function set_time() {
+        var select = [document.getElementById("border"), document.getElementById("frame"), document.getElementById("name").value]
+        var color1 = document.getElementById("color1").value;
+        var color2 = document.getElementById("color2").value;
+        var color3 = document.getElementById("color3").value;
+        var color4 = document.getElementById("color4").value;
+        var color5 = document.getElementById("color5").value;
+        var color6 = document.getElementById("color6").value;
+        var choice = document.getElementById("choice").value;
 
-      var color = "rgb(" + color1 + "," + color2 + "," + color3 + ")";
-      var borderColor = "rgb(" + color4 + "," + color5 + "," + color6 + ")";
-      var can = document.getElementById("canvas");
-      var ctx = can.getContext("2d");
-      var radius = can.width / 2;
-      var clockRadius = can.width / 2 - 25;
-      var date = new Date();
-      var hours = date.getHours() % 12;
-      var min = date.getMinutes();
-      var sec = date.getSeconds();
-      var fullhour = hours + min / 60 + sec / 3600;
-      var hourAng = fullhour * Math.PI / 6;
-      var minAng = min * Math.PI / 30;
-      var secAng = sec * Math.PI / 30;
+        var color = "rgb(" + color1 + "," + color2 + "," + color3 + ")";
+        var borderColor = "rgb(" + color4 + "," + color5 + "," + color6 + ")";
+        var can = document.getElementById("canvas");
+        var ctx = can.getContext("2d");
+        var radius = can.width / 2;
+        var clockRadius = can.width / 2 - 25;
+        var date = new Date();
+        var hours = date.getHours() % 12;
+        var min = date.getMinutes();
+        var sec = date.getSeconds();
+        var fullhour = hours + min / 60 + sec / 3600;
+        var hourAng = fullhour * Math.PI / 6;
+        var minAng = min * Math.PI / 30;
+        var secAng = sec * Math.PI / 30;
 
-      if (choice == "border") {
-        select[1].style.display = "none";
-        select[0].style.display = "block";
-      } else if (choice == "frame") {
-        select[0].style.display = "none";
-        select[1].style.display = "block";
+        if (choice == "border") {
+          select[1].style.display = "none";
+          select[0].style.display = "block";
+        } else if (choice == "frame") {
+          select[0].style.display = "none";
+          select[1].style.display = "block";
+        }
+        ctx.beginPath()
+        ctx.arc(radius, radius, radius - 10, 0, Math.PI * 2);
+        ctx.fillStyle = borderColor;
+        ctx.fill()
+        ctx.beginPath()
+        ctx.arc(radius, radius, clockRadius, 0, Math.PI * 2);
+        ctx.fillStyle = color;
+        ctx.fill()
+        ctx.beginPath()
+        ctx.arc(radius, radius, 10, 0, Math.PI * 2);
+        ctx.fillStyle = "white"
+        ctx.fill()
+        ctx.font = "20px Arial"
+        ctx.textAlign = "center";
+        ctx.baseLine = "middle"
+        ctx.fillStyle = "white"
+        for (i = 1; i <= 12; i++) {
+          ctx.fillText(i, radius + radius * Math.sin(i * (Math.PI / 6)) * 0.79, radius - (radius * Math.cos(i * (Math.PI / 6)) * 0.79))
+        }
+        for (i = 1; i <= 60; i++) {
+          if (i % 5 != 0)
+            ctx.fillText(".", radius + radius * Math.sin(i * (Math.PI / 30)) * 0.78, radius - (radius * Math.cos(i * (Math.PI / 30)) * 0.78))
+        }
+        ctx.strokeStyle = "white";
+        //hour hand
+        ctx.moveTo(radius, radius);
+        ctx.lineTo(radius + radius * Math.sin(hourAng) * 0.5, radius - radius * Math.cos(hourAng) * 0.5);
+        ctx.lineCap = "round"
+        ctx.lineWidth = 5;
+        ctx.stroke();
+        //min hand
+        ctx.moveTo(radius, radius);
+        ctx.lineTo(radius + radius * Math.sin(minAng) * 0.7, radius - radius * Math.cos(minAng) * 0.7);
+        ctx.lineCap = "round"
+        ctx.lineWidth = 3;
+        ctx.stroke();
+        // sec hand
+        ctx.moveTo(radius, radius);
+        ctx.lineTo(radius + radius * Math.sin(secAng) * 0.87, radius - radius * Math.cos(secAng) * 0.87);
+        ctx.lineWidth = 1;
+        ctx.stroke();
+
+        ctx.fillText(hours + ":" + min + ":" + sec, 200, 100);
+        ctx.fillText(select[2], 200, 130);
       }
-      ctx.beginPath()
-      ctx.arc(radius, radius, radius - 10, 0, Math.PI * 2);
-      ctx.fillStyle = borderColor;
-      ctx.fill()
-      ctx.beginPath()
-      ctx.arc(radius, radius, clockRadius, 0, Math.PI * 2);
-      ctx.fillStyle = color;
-      ctx.fill()
-      ctx.beginPath()
-      ctx.arc(radius, radius, 10, 0, Math.PI * 2);
-      ctx.fillStyle = "white"
-      ctx.fill()
-      ctx.font = "20px Arial"
-      ctx.textAlign = "center";
-      ctx.baseLine = "middle"
-      ctx.fillStyle = "white"
-      for (i = 1; i <= 12; i++) {
-        ctx.fillText(i, radius + radius * Math.sin(i * (Math.PI / 6)) * 0.79, radius - (radius * Math.cos(i * (Math.PI / 6)) * 0.79))
-      }
-      for (i = 1; i <= 60; i++) {
-        if (i % 5 != 0)
-          ctx.fillText(".", radius + radius * Math.sin(i * (Math.PI / 30)) * 0.78, radius - (radius * Math.cos(i * (Math.PI / 30)) * 0.78))
-      }
-      ctx.strokeStyle = "white";
-      //hour hand
-      ctx.moveTo(radius, radius);
-      ctx.lineTo(radius + radius * Math.sin(hourAng) * 0.5, radius - radius * Math.cos(hourAng) * 0.5);
-      ctx.lineCap = "round"
-      ctx.lineWidth = 5;
-      ctx.stroke();
-      //min hand
-      ctx.moveTo(radius, radius);
-      ctx.lineTo(radius + radius * Math.sin(minAng) * 0.7, radius - radius * Math.cos(minAng) * 0.7);
-      ctx.lineCap = "round"
-      ctx.lineWidth = 3;
-      ctx.stroke();
-      // sec hand
-      ctx.moveTo(radius, radius);
-      ctx.lineTo(radius + radius * Math.sin(secAng) * 0.87, radius - radius * Math.cos(secAng) * 0.87);
-      ctx.lineWidth = 1;
-      ctx.stroke();
+      setInterval(set_time, 1000);
 
-      ctx.fillText(hours + ":" + min + ":" + sec, 200, 100);
-      ctx.fillText(select[2], 200, 130);
-    }
-    setInterval(set_time, 1000);
-
-    /**
-     * This is the function that will take care of image extracting and
-     * setting proper filename for the download.
-     * IMPORTANT: Call it from within a onclick event.
-    */
-    function downloadCanvas(link, canvasId, filename) {
-      link.href = document.getElementById(canvasId).toDataURL();
-      link.download = filename;
-    }
-    /** 
-     * The event handler for the link's onclick event. We give THIS as a
-     * parameter (=the link element), ID of the canvas and a filename.
-    */
-    document.getElementById('down').addEventListener('click', function () {
-      downloadCanvas(this, 'canvas', 'clock.png');
-    }, false);
-  </script>
-</body>
+      /**
+       * This is the function that will take care of image extracting and
+       * setting proper filename for the download.
+       * IMPORTANT: Call it from within a onclick event.
+      */
+      function downloadCanvas(link, canvasId, filename) {
+        link.href = document.getElementById(canvasId).toDataURL();
+        link.download = filename;
+      }
+      /** 
+       * The event handler for the link's onclick event. We give THIS as a
+       * parameter (=the link element), ID of the canvas and a filename.
+      */
+      document.getElementById('down').addEventListener('click', function () {
+        downloadCanvas(this, 'canvas', 'clock.png');
+      }, false);
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KSX9W2JJ5N"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      gtag('js', new Date());
+      gtag('config', 'G-KSX9W2JJ5N');
+      gtag('page', "clock");
+    </script>
+  </body>
 
 </html>
