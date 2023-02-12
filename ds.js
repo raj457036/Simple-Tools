@@ -168,7 +168,6 @@ function infixToPostfix(expression, tab = 0) {
       }
       stack.push(char);
     }
-    console.log(tab);
     if (tab == 1) {
       table.exp.push(char);
       table.stack.push(stack.join(" "));
