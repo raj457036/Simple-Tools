@@ -170,23 +170,24 @@
             function sel(x) { return document.getElementById(x) }
             $("#fullresult").hide();
             function convert() {
-                document.getElementById("postfix").innerHTML = infixToPostfix(document.getElementById("expression").value)['postfixExpression'];
-                document.getElementById("prefix").innerHTML = infixToPrefix(document.getElementById("expression").value)['prefixExpression'];
+                const input = document.getElementById("expression").value.trim();
+                document.getElementById("postfix").innerHTML = infixToPostfix(input)['postfixExpression'];
+                document.getElementById("prefix").innerHTML = infixToPrefix(input)['prefixExpression'];
             }
             //converter button and expression
             $("button#convert").click(function () {
                 convert();
                 var items, tab = "";
                 $("#fullresult").show();
-
+                const input = document.getElementById("expression").value.trim();
                 switch ($('input[name=fixer]:checked').val()) {
                     case '1':
-                        items = infixToPostfix(document.getElementById("expression").value, 1)['table'];
+                        items = infixToPostfix(input, 1)['table'];
                         sel("itemname").innerHTML = "Postfix";
                         $("#ifpre").html("Below is the table showing the conversion steps.");
                         break;
                     case '2':
-                        items = infixToPrefix(document.getElementById("expression").value, 1)['table'];
+                        items = infixToPrefix(input, 1)['table'];
                         sel('itemname').innerHTML = "Prefix";
                         $("#ifpre").html("1. Reversed the Infix expression along with swithing ( with ) and vice versa.<br/>2. <big><b>Find the Postfix Expression as below table.</b></big><br />3. Reverse the resultant postfix expression like in step 1.");
                         break;

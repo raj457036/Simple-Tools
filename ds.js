@@ -102,10 +102,6 @@ const preference = {
 };
 
 function precidencer(item) {
-  /*
-    precedence are :
-            * > ^ > / > % > + > - > ) > ( > any operand
-    */
   var operators = ["", "(", ")", "-", "+", "%", "/", "*", "^"];
 
   for (var j = 0; j < operators.length; j++) {
@@ -272,6 +268,9 @@ function postfixEval(expression) {
 function prefixEval(expression) {
   expression = expression.trim();
   const isNumber = isNumbers(expression);
+  if (!isNumber) {
+    expression = expression.split("").join(" ");
+  }
 
   const prefixExp = expression.split(" ");
 

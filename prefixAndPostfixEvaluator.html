@@ -181,18 +181,19 @@
                 $("#fullresult").show();
                 let table;
 
+                const input = document.getElementById("expression").value.trim();
                 switch ($('input[name=fixer]:checked').val()) {
                     case '1':
-                        if (checker(document.getElementById("expression").value) == 0) {
-                            table = postfixEval(document.getElementById("expression").value);
+                        if (checker(input) == 0) {
+                            table = postfixEval(input);
                         }
                         else {
                             alert("Humm! looks like this is a prefix expression please select prefix evaluate.");
                         }
                         break;
                     case '2':
-                        if (checker(document.getElementById("expression").value) == 1) {
-                            table = prefixEval(document.getElementById("expression").value);
+                        if (checker(input) == 1) {
+                            table = prefixEval(input);
                         }
                         else {
                             alert("Humm! looks like this is a postfix expression please select postfix evaluate.");
