@@ -153,8 +153,10 @@ function infixToPostfix(expression, tab = 0) {
     } else if (isAnOperator(char)) {
       let pref = preference[char];
       let peek = stack[stack.length - 1];
-
-      while (pref < preference[peek]) {
+      if(char=='^')
+         stack.push('^');
+      else{
+      while (pref <= preference[peek]) {
         if (peek === "(") {
           break;
         }
@@ -163,7 +165,8 @@ function infixToPostfix(expression, tab = 0) {
         peek = stack[stack.length - 1];
       }
       stack.push(char);
-    }
+      }
+  }
     if (tab == 1) {
       table.exp.push(char);
       table.stack.push(stack.join(" "));
