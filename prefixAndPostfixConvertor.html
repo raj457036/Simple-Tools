@@ -128,9 +128,9 @@
                                             postfix expression
                                         </li>
                                         <li>IF an operator O is encountered, then <br>
-                                            a. Repeatedly pop from stack and add each operator ( popped from the stack)
-                                            to the postfix expression which has the higher precedence
-                                            than O
+                                            a. If the operator O is '^' go directly to step b, else repeatedly pop from stack and add each operator ( popped from the stack)
+                                            to the postfix expression which has the higher or equal precedence
+                                            than O.
                                             <br>b. Push the operator O to the stack.
                                         </li>
                                     </ul>
