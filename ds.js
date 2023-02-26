@@ -175,12 +175,6 @@ function infixToPostfix(expression, tab = 0, prefixMode = false) {
   }
   postfixExp.push(...stack.reverse());
 
-  // if (prefixMode) {
-  //   table.exp.push("{Reverse Expression}");
-  //   table.stack.push(" ");
-  //   table.conexp.push(postfixExp.reverse().join(""));
-  // }
-
   return {
     postfixExpression: postfixExp.join(""),
     table: table,
