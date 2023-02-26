@@ -121,7 +121,7 @@ function infixToPostfixV2(expression, tab = 0) {
 }
 
 // Infix to postfix conversion
-function infixToPostfix(expression, tab = 0) {
+function infixToPostfix(expression, tab = 0, prefixMode = false) {
   const infixExp = [...expression.split(""), ")"];
   const postfixExp = [];
 
@@ -154,7 +154,10 @@ function infixToPostfix(expression, tab = 0) {
       let pref = preference[char];
       let peek = stack[stack.length - 1];
 
-      while (!preference[peek] || pref < preference[peek]) {
+      const condition = () =>
+        prefixMode ? pref < preference[peek] : pref <= preference[peek];
+
+      while (condition()) {
         if (peek === "(") {
           break;
         }
@@ -171,6 +174,12 @@ function infixToPostfix(expression, tab = 0) {
     }
   }
   postfixExp.push(...stack.reverse());
+
+  // if (prefixMode) {
+  //   table.exp.push("{Reverse Expression}");
+  //   table.stack.push(" ");
+  //   table.conexp.push(postfixExp.reverse().join(""));
+  // }
 
   return {
     postfixExpression: postfixExp.join(""),
@@ -195,7 +204,7 @@ function reverser(expression) {
 }
 
 function infixToPrefix(expression, tab = 0) {
-  expression = infixToPostfix(reverser(expression), tab);
+  expression = infixToPostfix(reverser(expression), tab, true);
   return {
     prefixExpression: reverser(expression["postfixExpression"]),
     table: expression["table"],
@@ -222,6 +231,11 @@ function isNumbers(expression) {
 
 function postfixEval(expression) {
   expression = expression.trim();
+
+  if (expression.length > 1 && !expression.includes(" ")) {
+    alert("Please add 'space' between elements");
+    return;
+  }
 
   const postfixExp = [...expression.split(" "), ")"];
 
@@ -268,8 +282,9 @@ function postfixEval(expression) {
 function prefixEval(expression) {
   expression = expression.trim();
   const isNumber = isNumbers(expression);
-  if (!isNumber) {
-    expression = expression.split("").join(" ");
+  if (expression.length > 1 && !expression.includes(" ")) {
+    alert("Please add 'space' between elements");
+    return;
   }
 
   const prefixExp = expression.split(" ");
@@ -296,9 +311,6 @@ function prefixEval(expression) {
     table.char.push(char);
     table.s.push(stack.join(" "));
   }
-
-  // table.char = table.char.reverse();
-  // table.s = table.s.reverse();
 
   const finalResult = table.s[table.s.length - 1];
 

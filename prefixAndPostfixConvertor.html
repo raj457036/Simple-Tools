@@ -117,20 +117,20 @@
                                 <li>Step 2: Push "(" onto the stack </li>
                                 <li>Step 3: Repeat until each character in the infix notation is scanned
                                     <ul>
-                                        <li> IF a "(" is encountered, push it on the stack </li>
-                                        <li>IF an operand ( whether a digit or a character) is encountered, add it
+                                        <li>3.1: IF a "(" is encountered, push it on the stack </li>
+                                        <li>3.2: IF an operand ( whether a digit or a character) is encountered, add it
                                             postfix
                                             expression. </li>
-                                        <li>IF a ")" is encountered, then <br>
+                                        <li>3.3: IF a ")" is encountered, then <br>
                                             a. Repeatedly pop from stack and add it to the postfix expression until a
                                             "(" is encountered. <br>
                                             b. Discard the "(". That is, remove the(from stack and do not add it to the
                                             postfix expression
                                         </li>
-                                        <li>IF an operator O is encountered, then <br>
+                                        <li>3.4: IF an operator O is encountered, then <br>
                                             a. Repeatedly pop from stack and add each operator ( popped from the stack)
-                                            to the postfix expression which has the higher precedence
-                                            than O or if the operator O is any of +/-.
+                                            to the postfix expression which has equal or higher precedence
+                                            than O
                                             <br>b. Push the operator O to the stack.
                                         </li>
                                     </ul>
@@ -145,7 +145,17 @@
                             <ul class="text-left" id="prefixAlgo">
                                 <li>Step 1: Reverse the infix string. Note that while reversing the string you must
                                     interchange left and right parentheses. </li>
-                                <li>Step 2: Obtain the postfix expression of the infix expression Step 1. </li>
+                                <li>Step 2: Obtain the postfix expression of the expression obtained from Step 1
+                                    using the above given postfix algorithm with slight change in <strong>Step
+                                        3.4</strong><br />
+                                    <hr />
+                                    IF an operator O is encountered, then <br>
+                                    a. Repeatedly pop from stack and add each operator ( popped from the stack)
+                                    to the postfix expression which has <s>equal or</s> higher precedence
+                                    than O
+                                    <hr />
+
+                                </li>
                                 <li>Step 3: Reverse the postfix expression to get the prefix expression</li>
                             </ul>
                         </small>
@@ -188,8 +198,8 @@
                         break;
                     case '2':
                         items = infixToPrefix(input, 1)['table'];
-                        sel('itemname').innerHTML = "Prefix";
-                        $("#ifpre").html("1. Reversed the Infix expression along with swithing ( with ) and vice versa.<br/>2. <big><b>Find the Postfix Expression as below table.</b></big><br />3. Reverse the resultant postfix expression like in step 1.");
+                        sel('itemname').innerHTML = "Prefix ( Reversed )";
+                        $("#ifpre").html("1. Reversed the Infix expression along with swithing ( with ) and vice versa.<br/>2. <big><b>Find the Postfix Expression as below table.</b></big><br />3. Reverse the resultant expression like in step 1.");
                         break;
                 }
 
