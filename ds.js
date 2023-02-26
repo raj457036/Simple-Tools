@@ -154,7 +154,10 @@ function infixToPostfix(expression, tab = 0) {
       let pref = preference[char];
       let peek = stack[stack.length - 1];
 
-      while (pref < preference[peek]) {
+      while (
+        (pref < preference[peek] && preference[peek] > 0) ||
+        (pref === preference[peek] && preference[peek] === 0)
+      ) {
         if (peek === "(") {
           break;
         }
