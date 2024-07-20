@@ -238,27 +238,7 @@ function postfixEval(expression) {
       const a = stack.pop();
       const b = stack.pop();
 
-      let result;
-      switch (char) {
-        case "+":
-          result = `(${b} + ${a})`;
-          break;
-        case "-":
-          result = `(${b} - ${a})`;
-          break;
-        case "*":
-          result = `(${b} * ${a})`;
-          break;
-        case "/":
-          result = `(${b} / ${a})`;
-          break;
-        case "^":
-          result = `(${b} ** ${a})`; // Exponentiation
-          break;
-        default:
-          throw new Error(`Unknown operator: ${char}`);
-      }
-
+      let result = `(${b} ${char} ${a})`;
       stack.push(result);
     }
 
@@ -270,13 +250,12 @@ function postfixEval(expression) {
   let _tresult = `${finalResult}`;
 
   try {
-    _tresult += ` = ${eval(finalResult)}`;
+    _tresult += ` = ${eval(finalResult.replace(/\^/g, "**"))}`;
   } catch (error) {
     _tresult += " = Error";
   }
 
   table.s[table.s.length - 1] = _tresult;
-
   return table;
 }
 
@@ -306,8 +285,7 @@ function prefixEval(expression) {
       const b = stack.pop();
 
       // Create the expression with current operator
-      const result = `(${a}${char}${b})`;
-
+      let result = `(${b} ${char} ${a})`;
       // Push the result back to stack
       stack.push(result);
     }
@@ -326,6 +304,7 @@ function prefixEval(expression) {
     _tresult += ` = ${eval(finalResult.replace(/\^/g, "**"))}`;
   }
 
+  _tresult = _tresult.replace("**", "^");
   table.s[table.s.length - 1] = _tresult;
   return table;
 }
