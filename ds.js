@@ -116,10 +116,6 @@ function precidencer(item) {
 const isAnOperator = (s) => preference[s] !== undefined;
 const isAParen = (s) => preference[s] === 3;
 
-function infixToPostfixV2(expression, tab = 0) {
-  console.log(expression);
-}
-
 // Infix to postfix conversion
 function infixToPostfix(expression, tab = 0, prefixMode = false) {
   const infixExp = [...expression.split(""), ")"];
@@ -127,7 +123,7 @@ function infixToPostfix(expression, tab = 0, prefixMode = false) {
 
   const stack = ["("];
 
-  var table = {
+  const table = {
     exp: [],
     stack: [],
     conexp: [],
@@ -137,46 +133,50 @@ function infixToPostfix(expression, tab = 0, prefixMode = false) {
   table.stack.push(stack.join(" "));
   table.conexp.push(postfixExp.join(""));
 
-  for (var char of infixExp) {
-    if (!isAnOperator(char)) {
+  for (let char of infixExp) {
+    if (!isAnOperator(char) && char !== "(" && char !== ")") {
       postfixExp.push(char);
     } else if (char === "(") {
-      stack.push("(");
+      stack.push(char);
     } else if (char === ")") {
       let peek = stack[stack.length - 1];
       while (stack.length > 0 && peek !== "(") {
-        const top = stack.pop();
-        postfixExp.push(top);
+        postfixExp.push(stack.pop());
         peek = stack[stack.length - 1];
       }
-      stack.pop();
+      stack.pop(); // Remove the '('
     } else if (isAnOperator(char)) {
       let pref = preference[char];
       let peek = stack[stack.length - 1];
 
+      // Update condition to handle right-associativity
       const condition = () =>
-        prefixMode ? pref < preference[peek] : pref <= preference[peek];
+        prefixMode
+          ? pref < preference[peek]
+          : pref <= preference[peek] && char !== "^";
 
-      while (condition()) {
+      while (stack.length > 0 && condition()) {
         if (peek === "(") {
           break;
         }
-        let top = stack.pop();
-        postfixExp.push(top);
+        postfixExp.push(stack.pop());
         peek = stack[stack.length - 1];
       }
       stack.push(char);
     }
-    if (tab == 1) {
+    if (tab === 1) {
       table.exp.push(char);
       table.stack.push(stack.join(" "));
-      table.conexp.push(postfixExp.join(""));
+      table.conexp.push(postfixExp.join(" "));
     }
   }
-  postfixExp.push(...stack.reverse());
+
+  while (stack.length > 0) {
+    postfixExp.push(stack.pop());
+  }
 
   return {
-    postfixExpression: postfixExp.join(""),
+    postfixExpression: postfixExp.join(" "),
     table: table,
   };
 }
@@ -198,29 +198,17 @@ function reverser(expression) {
 }
 
 function infixToPrefix(expression, tab = 0) {
-  expression = infixToPostfix(reverser(expression), tab, true);
+  const postfixResult = infixToPostfix(reverser(expression), tab, true);
+  const postfixExp = postfixResult.postfixExpression;
+  const prefixExp = reverser(postfixExp);
   return {
-    prefixExpression: reverser(expression["postfixExpression"]),
-    table: expression["table"],
+    prefixExpression: prefixExp,
+    table: postfixResult.table,
   };
 }
 
 function isNumbers(expression) {
-  let isNumber = true;
-
-  const splited = expression.split(" ");
-
-  for (const char of splited) {
-    if ("+-/*()^".includes(char)) continue;
-
-    const num = parseInt(char);
-    if (num.toString() === "NaN") {
-      isNumber = false;
-      break;
-    }
-  }
-
-  return isNumber;
+  return !/[^\d\s+\-*/^()]/.test(expression); // Allow only digits and valid operators
 }
 
 function postfixEval(expression) {
@@ -233,8 +221,6 @@ function postfixEval(expression) {
 
   const postfixExp = [...expression.split(" "), ")"];
 
-  const isNumber = isNumbers(expression);
-
   const table = {
     char: [],
     s: [],
@@ -242,6 +228,7 @@ function postfixEval(expression) {
 
   const stack = [];
   let finalResult = 0;
+
   for (const char of postfixExp) {
     if (char === ")") break;
 
@@ -251,21 +238,41 @@ function postfixEval(expression) {
       const a = stack.pop();
       const b = stack.pop();
 
-      let result = `(${b}${char}${a})`;
+      let result;
+      switch (char) {
+        case "+":
+          result = `(${b} + ${a})`;
+          break;
+        case "-":
+          result = `(${b} - ${a})`;
+          break;
+        case "*":
+          result = `(${b} * ${a})`;
+          break;
+        case "/":
+          result = `(${b} / ${a})`;
+          break;
+        case "^":
+          result = `(${b} ** ${a})`; // Exponentiation
+          break;
+        default:
+          throw new Error(`Unknown operator: ${char}`);
+      }
 
       stack.push(result);
     }
 
     finalResult = stack[stack.length - 1];
-
     table.char.push(char);
     table.s.push(stack.join(" "));
   }
 
   let _tresult = `${finalResult}`;
 
-  if (isNumber) {
+  try {
     _tresult += ` = ${eval(finalResult)}`;
+  } catch (error) {
+    _tresult += " = Error";
   }
 
   table.s[table.s.length - 1] = _tresult;
@@ -281,41 +288,45 @@ function prefixEval(expression) {
     return;
   }
 
-  const prefixExp = expression.split(" ");
-
+  // Reverse the prefix expression for evaluation
+  const prefixExp = expression.split(" ").reverse();
   const stack = [];
-
   const table = {
     char: [],
     s: [],
   };
 
-  for (const char of prefixExp.reverse()) {
+  for (const char of prefixExp) {
     if (!isAnOperator(char)) {
+      // Push numbers to stack as is
       stack.push(char);
     } else {
+      // Pop two operands for the operator
       const a = stack.pop();
       const b = stack.pop();
 
+      // Create the expression with current operator
       const result = `(${a}${char}${b})`;
 
+      // Push the result back to stack
       stack.push(result);
     }
 
+    // Update the table for debugging
     table.char.push(char);
     table.s.push(stack.join(" "));
   }
 
-  const finalResult = table.s[table.s.length - 1];
-
+  const finalResult = stack[stack.length - 1];
   let _tresult = `${finalResult}`;
-  console.log(finalResult);
+
+  // Evaluate the final result
   if (isNumber) {
-    _tresult += ` = ${eval(finalResult)}`;
+    // Replace '^' with '**' for JavaScript evaluation
+    _tresult += ` = ${eval(finalResult.replace(/\^/g, "**"))}`;
   }
 
   table.s[table.s.length - 1] = _tresult;
-
   return table;
 }
 
