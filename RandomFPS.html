@@ -1,111 +1,135 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Random FPS</title>
-    <script src="ds.js"></script>
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
-      integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
-  </head>
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="google-adsense-account" content="ca-pub-2217728188815563">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Random FPS</title>
+  <script src="ds.js"></script>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
+    integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2217728188815563"
+    crossorigin="anonymous"></script>
+</head>
 
-  <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <a class="navbar-brand" href="index.html">Simple Tools</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
-        aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false">
-            tools
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item" href="calculator.html">Calculator</a>
-            <a class="dropdown-item" href="prefixAndPostfixConvertor.html">Infix-&gt
-              postfix/Prefix</a>
-            <a class="dropdown-item" href="prefixAndPostfixEvaluator.html">Postfix/Prefix-&gt
-              Evaluate</a>
-            <a class="dropdown-item" href="Clock.html">Beautiful Clock</a>
-            <a class="dropdown-item" href="RandomFPS.html">FPS Simulator</a>
-          </div>
-          <a class="nav-item nav-link" href="#" onclick='alert("Thanks for using this tool.")'>About</a>
-
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="index.html">Simple Tools</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+      aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          tools
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="calculator.html">Calculator</a>
+          <a class="dropdown-item" href="prefixAndPostfixConvertor.html">Infix-&gt
+            postfix/Prefix</a>
+          <a class="dropdown-item" href="prefixAndPostfixEvaluator.html">Postfix/Prefix-&gt
+            Evaluate</a>
+          <a class="dropdown-item" href="Clock.html">Beautiful Clock</a>
+          <a class="dropdown-item" href="RandomFPS.html">FPS Simulator</a>
         </div>
+        <a class="nav-item nav-link" href="#" onclick='alert("Thanks for using this tool.")'>About</a>
+
       </div>
-    </nav>
-    <style>
-      #shape,
-      #shape2 {
-        height: 80vh;
-        width: 90vw;
-        display: inline-block;
-        margin: 10px;
-      }
-
-      button {
-        padding: 2px 5px;
-        border: 1px solid rgb(121, 121, 121);
-        box-shadow: 1px 1px 10px rgb(201, 201, 201);
-        margin: 2px;
-        border-radius: 3px;
-      }
-
-      button:hover,
-      button:active {
-        background-color: #ff1744;
-        color: white;
-      }
-
-      .flex {
-        display: flex;
-        direction: row;
-        justify-content: center;
-        flex-wrap: wrap;
-      }
-    </style>
-    <h3 align="center" style="font-family:sans-serif; font-weight:100; padding:0; margin:10px 0">Simple Random FPS</h3>
-    <h4 align="center" style="font-family:sans-serif; font-weight:100; padding:0; margin:10px 0">FPS <span
-        id="fps"></span></h4>
-    <div class="flex">
-      <button onclick="changeSpeed(1, 1000)">1000 fps</button>
-      <button onclick="changeSpeed(2, 500)">500 fps</button>
-      <button onclick="changeSpeed(4, 250)">250 fps</button>
-      <button onclick="changeSpeed(8, 120)">120 fps</button>
-      <button onclick="changeSpeed(16, 60)">60 fps</button>
-      <button onclick="changeSpeed(33, 30)">30 fps</button>
-      <button onclick="changeSpeed(67, 15)">15 fps</button>
-      <button onclick="changeSpeed(133, 7)">7 fps</button>
-      <button onclick="changeSpeed(267, 4)">4 fps</button>
-      <button onclick="changeSpeed(533, 2)">2 fps</button>
-      <button onclick="changeSpeed(1000, 1)">1 fps</button>
     </div>
-    <div id="shape2"></div>
-    <script>
-      var speed = 8;
-      var ele2 = document.getElementById('shape2');
-      var fpsC = document.getElementById('fps');
-      var vals = [
-        [0, 0],
-        [0, 0],
-        [0, 0],
-        [0, 0],
-        [0, 0],
-        [0, 0],
-        [0, 0],
-        [0, 0],
-        [0, 0],
-        [0, 0]
-      ];
-      var fps = 120;
-      fpsC.innerText = `~${fps}`;
-      var interval = setInterval(() => {
+  </nav>
+  <style>
+    #shape,
+    #shape2 {
+      height: 80vh;
+      width: 90vw;
+      display: inline-block;
+      margin: 10px;
+    }
 
+    button {
+      padding: 2px 5px;
+      border: 1px solid rgb(121, 121, 121);
+      box-shadow: 1px 1px 10px rgb(201, 201, 201);
+      margin: 2px;
+      border-radius: 3px;
+    }
+
+    button:hover,
+    button:active {
+      background-color: #ff1744;
+      color: white;
+    }
+
+    .flex {
+      display: flex;
+      direction: row;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+  </style>
+  <h3 align="center" style="font-family:sans-serif; font-weight:100; padding:0; margin:10px 0">Simple Random FPS</h3>
+  <h4 align="center" style="font-family:sans-serif; font-weight:100; padding:0; margin:10px 0">FPS <span
+      id="fps"></span></h4>
+  <div class="flex">
+    <button onclick="changeSpeed(1, 1000)">1000 fps</button>
+    <button onclick="changeSpeed(2, 500)">500 fps</button>
+    <button onclick="changeSpeed(4, 250)">250 fps</button>
+    <button onclick="changeSpeed(8, 120)">120 fps</button>
+    <button onclick="changeSpeed(16, 60)">60 fps</button>
+    <button onclick="changeSpeed(33, 30)">30 fps</button>
+    <button onclick="changeSpeed(67, 15)">15 fps</button>
+    <button onclick="changeSpeed(133, 7)">7 fps</button>
+    <button onclick="changeSpeed(267, 4)">4 fps</button>
+    <button onclick="changeSpeed(533, 2)">2 fps</button>
+    <button onclick="changeSpeed(1000, 1)">1 fps</button>
+  </div>
+  <div id="shape2"></div>
+  <script>
+    var speed = 8;
+    var ele2 = document.getElementById('shape2');
+    var fpsC = document.getElementById('fps');
+    var vals = [
+      [0, 0],
+      [0, 0],
+      [0, 0],
+      [0, 0],
+      [0, 0],
+      [0, 0],
+      [0, 0],
+      [0, 0],
+      [0, 0],
+      [0, 0]
+    ];
+    var fps = 120;
+    fpsC.innerText = `~${fps}`;
+    var interval = setInterval(() => {
+
+      let num = Math.round(Math.random() * 9);
+      let temp = Math.round(Math.random());
+      if (vals[num][temp] <= 100) {
+        vals[num][temp]++;
+      } else {
+        vals[num][temp] = 0;
+      }
+      ele2.style.clipPath =
+        `polygon(${vals[0][0]}% ${vals[0][1]}%, ${vals[1][0]}% ${vals[1][1]}%, ${vals[2][0]}% ${vals[2][1]}%, ${vals[3][0]}% ${vals[3][1]}%, ${vals[4][0]}% ${vals[4][1]}%, ${vals[5][0]}% ${vals[5][1]}%, ${vals[6][0]}% ${vals[6][1]}%, ${vals[7][0]}% ${vals[7][1]}%, ${vals[8][0]}% ${vals[8][1]}%, ${vals[9][0]}% ${vals[9][1]}%)`;
+    }, speed);
+
+    setInterval(() => {
+      ele2.style.backgroundColor =
+        `rgb(${Math.round(Math.random() * 255)}, ${Math.round(Math.random() * 255)}, ${Math.round(Math.random() * 255)})`
+    }, 1000)
+
+    var changeSpeed = (s, f) => {
+      fpsC.innerText = fps = `~${f}`;
+      clearInterval(interval);
+      speed = s;
+      interval = setInterval(() => {
         let num = Math.round(Math.random() * 9);
         let temp = Math.round(Math.random());
         if (vals[num][temp] <= 100) {
@@ -116,48 +140,27 @@
         ele2.style.clipPath =
           `polygon(${vals[0][0]}% ${vals[0][1]}%, ${vals[1][0]}% ${vals[1][1]}%, ${vals[2][0]}% ${vals[2][1]}%, ${vals[3][0]}% ${vals[3][1]}%, ${vals[4][0]}% ${vals[4][1]}%, ${vals[5][0]}% ${vals[5][1]}%, ${vals[6][0]}% ${vals[6][1]}%, ${vals[7][0]}% ${vals[7][1]}%, ${vals[8][0]}% ${vals[8][1]}%, ${vals[9][0]}% ${vals[9][1]}%)`;
       }, speed);
+    };
 
-      setInterval(() => {
-        ele2.style.backgroundColor =
-          `rgb(${Math.round(Math.random() * 255)}, ${Math.round(Math.random() * 255)}, ${Math.round(Math.random() * 255)})`
-      }, 1000)
+  </script>
 
-      var changeSpeed = (s, f) => {
-        fpsC.innerText = fps = `~${f}`;
-        clearInterval(interval);
-        speed = s;
-        interval = setInterval(() => {
-          let num = Math.round(Math.random() * 9);
-          let temp = Math.round(Math.random());
-          if (vals[num][temp] <= 100) {
-            vals[num][temp]++;
-          } else {
-            vals[num][temp] = 0;
-          }
-          ele2.style.clipPath =
-            `polygon(${vals[0][0]}% ${vals[0][1]}%, ${vals[1][0]}% ${vals[1][1]}%, ${vals[2][0]}% ${vals[2][1]}%, ${vals[3][0]}% ${vals[3][1]}%, ${vals[4][0]}% ${vals[4][1]}%, ${vals[5][0]}% ${vals[5][1]}%, ${vals[6][0]}% ${vals[6][1]}%, ${vals[7][0]}% ${vals[7][1]}%, ${vals[8][0]}% ${vals[8][1]}%, ${vals[9][0]}% ${vals[9][1]}%)`;
-        }, speed);
-      };
-
-    </script>
-
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-      crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
-      integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
-      crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"
-      integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
-      crossorigin="anonymous"></script>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KSX9W2JJ5N"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() { dataLayer.push(arguments); }
-      gtag('js', new Date());
-      gtag('config', 'G-KSX9W2JJ5N');
-      gtag('page', "fps");
-    </script>
-  </body>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
+    integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"
+    integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
+    crossorigin="anonymous"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-KSX9W2JJ5N"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-KSX9W2JJ5N');
+    gtag('page', "fps");
+  </script>
+</body>
 
 </html>
